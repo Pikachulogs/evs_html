@@ -1,0 +1,1314 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Vanishing Fields India</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,500;0,700;0,900;1,500;1,700&display=swap">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        fontFamily: {
+          display: ['"Playfair Display"', 'Georgia', 'serif'],
+          sans: ['Inter', 'system-ui', 'sans-serif']
+        },
+        colors: { paper: '#FAF6F0', ink: '#2D2D2D', forest: '#2C5A3A', clay: '#B0522E' }
+      }
+    }
+  };
+</script>
+<style>
+  /* Layout concept: a single editorial column of short sections on warm paper;
+     the explorer is the one framed, instrument-like object on the page. */
+  :root {
+    --paper: #FAF6F0;
+    --paper-2: #F1E9DB;
+    --panel: #FFFDF9;
+    --ink: #2D2D2D;
+    --ink-soft: #55524C;
+    --rule: #D9D0C0;
+    --forest: #2C5A3A;
+    --forest-deep: #1F4029;
+    --clay: #B0522E;
+    --clay-deep: #6F2F1C;
+    --urban-gray: #8E8B86;
+    --warn-red: #E0201B;
+    --white: #FFFFFF;
+    --font-display: 'Playfair Display', Georgia, 'Times New Roman', serif;
+    --font-body: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+    color-scheme: light;
+  }
+
+  html { scroll-padding-top: 7rem; }
+  @media (min-width: 720px) { html { scroll-padding-top: 5rem; } }
+  @media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-body);
+    font-size: 1.0625rem;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap { width: 100%; max-width: 72rem; margin-inline: auto; padding-inline: clamp(1rem, 4vw, 2rem); }
+  .measure { max-width: 65ch; }
+
+  h1, h2, h3 { font-family: var(--font-display); font-weight: 700; color: var(--ink); text-wrap: balance; margin: 0; }
+  h1 { font-size: clamp(2.75rem, 8vw, 6rem); line-height: 1.02; letter-spacing: -0.02em; font-weight: 900; }
+  h1 em { font-style: italic; font-weight: 700; color: var(--clay); }
+  h2 { font-size: clamp(2rem, 4.6vw, 3.25rem); line-height: 1.1; letter-spacing: -0.01em; }
+  h3 { font-size: 1.375rem; line-height: 1.25; }
+  p { margin: 0; }
+
+  a { color: var(--forest-deep); text-underline-offset: 3px; }
+  a:hover { color: var(--clay-deep); }
+
+  :focus-visible {
+    outline: 3px solid var(--forest-deep);
+    outline-offset: 2px;
+    box-shadow: 0 0 0 2px var(--white);
+  }
+
+  .skip { position: absolute; left: 1rem; top: -4rem; background: var(--forest-deep); color: var(--white); padding: .6rem 1rem; z-index: 100; border-radius: .25rem; }
+  .skip:focus { top: .75rem; color: var(--white); }
+
+  .eyebrow { font-size: .75rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--clay-deep); }
+  .lede { font-size: 1.1875rem; color: var(--ink-soft); }
+
+  .section { padding-block: clamp(4rem, 9vw, 7rem); }
+  .section + .section { border-top: 1px solid var(--rule); }
+  .section-head { display: grid; gap: 1rem; margin-bottom: clamp(2rem, 5vw, 3.5rem); }
+
+  /* ---------- Navigation ---------- */
+  .site-nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+    padding-top: env(safe-area-inset-top, 0px);
+    background: rgba(250, 246, 240, .95);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid var(--rule);
+  }
+  .nav-inner { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; column-gap: 1.5rem; min-height: 3.5rem; padding-block: .25rem; }
+  .brand { font-family: var(--font-display); font-weight: 700; font-size: 1.125rem; color: var(--ink); text-decoration: none; letter-spacing: -.01em; }
+  .brand span { color: var(--clay); font-style: italic; }
+  .nav-links { display: flex; flex-wrap: wrap; gap: .25rem 1.25rem; list-style: none; margin: 0; padding: 0; }
+  .nav-links a { display: inline-block; padding: .5rem .125rem; font-size: .875rem; font-weight: 500; color: var(--ink); text-decoration: none; border-bottom: 2px solid transparent; }
+  .nav-links a:hover { border-bottom-color: var(--clay); color: var(--ink); }
+  .nav-links a[aria-current="location"] { border-bottom-color: var(--forest); }
+  .progress { height: 2px; background: transparent; }
+  .progress span { display: block; height: 100%; width: 100%; background: var(--forest); transform-origin: left; transform: scaleX(0); }
+
+  /* ---------- Hero ---------- */
+  .hero { padding-top: 8.5rem; padding-bottom: clamp(3rem, 7vw, 5rem); }
+  @media (min-width: 720px) { .hero { padding-top: 9rem; } }
+  .hero-copy { display: grid; gap: 1.75rem; max-width: 54rem; }
+  .premise { font-size: clamp(1.1875rem, 2.2vw, 1.5rem); line-height: 1.5; color: var(--ink-soft); max-width: 40rem; }
+  .cta { justify-self: start; display: inline-flex; align-items: center; gap: .6rem; padding: .85rem 1.4rem; background: var(--forest-deep); color: var(--white); font-weight: 600; font-size: .9375rem; text-decoration: none; border-radius: .25rem; }
+  .cta:hover { background: var(--clay-deep); color: var(--white); }
+  .hero-art { margin: clamp(2.5rem, 6vw, 4rem) 0 0; }
+  .hero-art svg { display: block; width: 100%; height: auto; }
+  .figcap { margin-top: .75rem; font-size: .8125rem; line-height: 1.5; color: var(--ink-soft); max-width: 60ch; }
+
+  /* ---------- Story ---------- */
+  .story-grid { display: grid; gap: 2.5rem; }
+  @media (min-width: 880px) { .story-grid { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 4rem; } }
+  .prose { display: grid; gap: 1.4rem; }
+  .pull { font-family: var(--font-display); font-style: italic; font-weight: 500; font-size: clamp(1.5rem, 3vw, 2.125rem); line-height: 1.3; color: var(--forest-deep); border-left: 3px solid var(--clay); padding-left: 1.25rem; }
+  .fn { font-size: .8125rem; line-height: 1.55; color: var(--ink-soft); }
+  .fn strong { color: var(--ink); font-weight: 600; }
+
+  /* ---------- Indicators ---------- */
+  .indicators { display: grid; gap: 2.5rem; }
+  @media (min-width: 880px) { .indicators { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2.5rem; } }
+  .indicator { display: grid; gap: .9rem; align-content: start; border-top: 2px solid var(--ink); padding-top: 1.25rem; min-width: 0; }
+  .big { font-family: var(--font-display); font-weight: 900; font-size: clamp(2.5rem, 5vw, 3.5rem); line-height: 1; letter-spacing: -.02em; color: var(--forest); font-variant-numeric: tabular-nums; }
+  .big.clay { color: var(--clay); }
+  .indicator .fn { border-top: 1px dotted var(--ink-soft); padding-top: .75rem; }
+
+  /* ---------- Explorer widget ---------- */
+  .widget { background: var(--panel); border: 1px solid var(--ink); border-radius: .25rem; box-shadow: 8px 8px 0 var(--paper-2); }
+  .widget-bar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .5rem 1.25rem; padding: .85rem clamp(1rem, 3vw, 1.5rem); border-bottom: 1px solid var(--ink); background: var(--ink); color: var(--paper); border-radius: .25rem .25rem 0 0; }
+  .badge { font-size: .75rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; }
+  .widget-note { font-size: .8125rem; color: #E4DCCD; }
+  .widget-grid { display: grid; gap: 0; }
+  @media (min-width: 960px) { .widget-grid { grid-template-columns: minmax(0, 20rem) minmax(0, 1fr); } }
+  .controls { display: grid; gap: 1.25rem; align-content: start; padding: clamp(1rem, 3vw, 1.5rem); border-bottom: 1px solid var(--rule); }
+  @media (min-width: 960px) { .controls { border-bottom: 0; border-right: 1px solid var(--rule); } }
+  .output { display: grid; gap: 1.5rem; padding: clamp(1rem, 3vw, 1.75rem); min-width: 0; }
+
+  .field { display: grid; gap: .4rem; min-width: 0; }
+  .field label { font-size: .8125rem; font-weight: 600; letter-spacing: .02em; color: var(--ink); }
+  .hint { font-size: .78rem; line-height: 1.45; color: var(--ink-soft); }
+  .years { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+
+  .combo { position: relative; }
+  .combo input, .select {
+    width: 100%; min-height: 2.75rem; padding: .6rem 2.5rem .6rem .8rem;
+    background: var(--white); color: var(--ink); -webkit-text-fill-color: var(--ink);
+    border: 1px solid #8C8578; border-radius: .25rem;
+    font: inherit; font-size: .9375rem; line-height: 1.3;
+  }
+  .select {
+    padding-right: 2.25rem; appearance: none; -webkit-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5l5 5 5-5' fill='none' stroke='%232D2D2D' stroke-width='1.8'/%3E%3C/svg%3E");
+    background-repeat: no-repeat; background-position: right .8rem center;
+  }
+  .select option { background: #fff; color: #2D2D2D; }
+  .combo input::placeholder { color: #6B675F; -webkit-text-fill-color: #6B675F; opacity: 1; }
+  .combo input:disabled { background: #EDE6D9; color: #5F5B54; -webkit-text-fill-color: #5F5B54; border-color: #BDB4A3; cursor: not-allowed; }
+  .combo input:-webkit-autofill { -webkit-text-fill-color: #2D2D2D; box-shadow: 0 0 0 40px #fff inset; }
+  .combo input[aria-invalid="true"] { border-color: var(--clay); border-width: 2px; }
+  .combo-toggle { position: absolute; top: 0; right: 0; width: 2.5rem; height: 100%; display: grid; place-items: center; background: transparent; border: 0; color: var(--ink); cursor: pointer; border-radius: 0 .25rem .25rem 0; }
+  .combo-toggle:disabled { cursor: not-allowed; opacity: .45; }
+  .combo-toggle svg { transition: transform .15s ease; }
+  .combo input[aria-expanded="true"] ~ .combo-toggle svg { transform: rotate(180deg); }
+
+  /* The list is always solid white with charcoal text, in every state. */
+  .combo-list {
+    position: absolute; z-index: 30; left: 0; right: 0; top: calc(100% + 4px);
+    max-height: 16rem; overflow-y: auto; margin: 0; padding: .25rem; list-style: none;
+    background: #FFFFFF; color: #2D2D2D;
+    border: 1px solid #8C8578; border-radius: .25rem;
+    box-shadow: 0 14px 30px rgba(45, 45, 45, .18);
+  }
+  .combo-list li {
+    display: flex; justify-content: space-between; align-items: baseline; gap: .75rem;
+    padding: .55rem .7rem; border-radius: .2rem; cursor: pointer;
+    background: #FFFFFF; color: #2D2D2D; -webkit-text-fill-color: #2D2D2D;
+    font-size: .9375rem; line-height: 1.35;
+  }
+  .combo-list li:hover,
+  .combo-list li[aria-selected="true"] { background: #EFE6D6; color: #2D2D2D; -webkit-text-fill-color: #2D2D2D; }
+  .combo-list li[aria-selected="true"] { outline: 2px solid #1F4029; outline-offset: -2px; }
+  .combo-list li.is-current .opt-name { font-weight: 600; }
+  .combo-list .opt-tag { flex: none; font-size: .72rem; color: #55524C; -webkit-text-fill-color: #55524C; white-space: nowrap; }
+  .combo-list li.empty { cursor: default; color: #55524C; -webkit-text-fill-color: #55524C; }
+  .combo-list li.empty:hover { background: #FFFFFF; }
+
+  .btn { min-height: 3rem; padding: .8rem 1.25rem; border: 0; border-radius: .25rem; background: var(--forest-deep); color: var(--white); font: inherit; font-size: .9375rem; font-weight: 600; cursor: pointer; }
+  .btn:hover { background: var(--clay-deep); }
+  .status { min-height: 1.25rem; font-size: .8125rem; line-height: 1.45; color: var(--clay-deep); font-weight: 500; }
+
+  details.method { border-top: 1px solid var(--rule); padding-top: .9rem; }
+  details.method summary { cursor: pointer; font-size: .8125rem; font-weight: 600; }
+  details.method p { margin-top: .6rem; font-size: .78rem; line-height: 1.55; color: var(--ink-soft); }
+
+  .result-head { display: grid; gap: .35rem; }
+  .result-head h3 { font-size: clamp(1.25rem, 2.6vw, 1.625rem); }
+  .example-tag { font-size: .8125rem; color: var(--ink-soft); }
+
+  .maps { display: grid; gap: 1.25rem; }
+  @media (min-width: 640px) { .maps { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  .map-card { margin: 0; display: grid; gap: .6rem; min-width: 0; }
+  .map-title { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: .25rem .75rem; font-size: .875rem; }
+  .map-title strong { font-weight: 600; }
+  .map-title span { color: var(--ink-soft); font-variant-numeric: tabular-nums; }
+  .map-box { background: var(--paper); border: 1px solid var(--rule); border-radius: .25rem; aspect-ratio: 1 / 1; max-width: 100%; }
+  .map-box svg { display: block; width: 100%; height: 100%; }
+  .map-meta { font-size: .78rem; color: var(--ink-soft); line-height: 1.45; font-variant-numeric: tabular-nums; }
+  .reveal { transition: opacity .9s ease; }
+
+  .legend { display: flex; flex-wrap: wrap; gap: .6rem 1.5rem; list-style: none; margin: 0; padding: .85rem 1rem; background: var(--paper); border: 1px solid var(--rule); border-radius: .25rem; font-size: .8125rem; }
+  .legend li { display: flex; align-items: center; gap: .55rem; }
+  .sw { width: 1.1rem; height: 1.1rem; border-radius: .15rem; border: 1px solid rgba(45, 45, 45, .45); flex: none; }
+  .sw-green { background: var(--forest); }
+  .sw-gray { background: var(--urban-gray); }
+  .sw-red { background: var(--warn-red); }
+
+  .telemetry { display: grid; gap: 1rem; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  @media (min-width: 1100px) { .telemetry { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+  .tile { display: grid; gap: .25rem; align-content: start; padding: 1rem; border: 1px solid var(--rule); border-radius: .25rem; background: var(--paper); min-width: 0; }
+  .tile .k { font-size: .72rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-soft); }
+  .tile .v { font-family: var(--font-display); font-weight: 700; font-size: clamp(1.5rem, 3vw, 2rem); line-height: 1.1; color: var(--ink); font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
+  .tile .u { font-size: .78rem; color: var(--ink-soft); line-height: 1.4; }
+  .summary { font-size: .9375rem; color: var(--ink); max-width: 70ch; }
+  .map-note { font-size: .78rem; line-height: 1.55; color: var(--ink-soft); max-width: 75ch; }
+
+  /* ---------- Ledger ---------- */
+  .ledger { display: grid; gap: 1.25rem; }
+  @media (min-width: 680px) { .ledger { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (min-width: 1040px) { .ledger { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+  .entry { display: grid; gap: .85rem; align-content: start; padding: 1.5rem; background: var(--panel); border: 1px solid var(--rule); border-radius: .25rem; min-width: 0; }
+  .entry-top { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: .35rem .75rem; }
+  .entry .where { font-size: .75rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--clay-deep); }
+  .chip { font-size: .75rem; font-weight: 500; padding: .2rem .6rem; border: 1px solid var(--forest); color: var(--forest-deep); border-radius: 999px; }
+  .entry h3 { font-size: 1.5rem; }
+  .entry dl { margin: 0; display: grid; gap: .75rem; }
+  .entry dt { font-size: .72rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-soft); }
+  .entry dd { margin: .15rem 0 0; font-size: .96rem; line-height: 1.6; }
+
+  /* ---------- Impacts ---------- */
+  .impact-band { background: var(--paper-2); }
+  .impact-key { display: flex; flex-wrap: wrap; gap: .75rem 1.5rem; font-size: .8125rem; color: var(--ink-soft); margin-bottom: 2rem; }
+  .tag { display: inline-block; font-size: .72rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; padding: .2rem .6rem; border-radius: 999px; }
+  .tag-est { background: var(--forest-deep); color: var(--white); border: 1px solid var(--forest-deep); }
+  .tag-pos { background: transparent; color: var(--clay-deep); border: 1px solid var(--clay-deep); }
+  .impact { display: grid; gap: 1.5rem; padding-block: 2rem; border-top: 1px solid var(--ink); }
+  @media (min-width: 880px) { .impact { grid-template-columns: minmax(0, 3fr) minmax(0, 4.5fr) minmax(0, 4.5fr); gap: 2.5rem; } }
+  .impact h3 { font-size: 1.75rem; }
+  .impact .col { display: grid; gap: .6rem; align-content: start; min-width: 0; }
+  .impact .col p { font-size: .98rem; }
+
+  /* ---------- Planning ---------- */
+  .approaches { display: grid; gap: 1.25rem; }
+  @media (min-width: 880px) { .approaches { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.75rem; } }
+  .approach { display: grid; gap: 1rem; align-content: start; padding: 1.5rem; background: var(--panel); border: 1px solid var(--rule); border-radius: .25rem; min-width: 0; }
+  .approach h3 { font-size: 1.5rem; }
+  .approach dl { margin: 0; display: grid; gap: .8rem; }
+  .approach dt { font-size: .72rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--forest-deep); }
+  .approach dt.tradeoff { color: var(--clay-deep); }
+  .approach dd { margin: .15rem 0 0; font-size: .96rem; line-height: 1.6; }
+  .editorial-note { margin-top: 2rem; padding: 1.5rem clamp(1rem, 3vw, 2rem); background: var(--paper-2); border-radius: .25rem; display: grid; gap: .6rem; }
+  .editorial-note p { max-width: 75ch; }
+
+  /* ---------- Sources ---------- */
+  .sources-grid { display: grid; gap: 2.5rem; }
+  @media (min-width: 880px) { .sources-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 3.5rem; } }
+  .sources h3 { font-size: 1.375rem; margin-bottom: .75rem; }
+  .sources ul, .sources ol { margin: 0; padding-left: 1.2rem; display: grid; gap: .65rem; font-size: .9375rem; line-height: 1.6; }
+  .sources p + p { margin-top: .75rem; }
+  .sources code { font-size: .85em; background: var(--paper-2); padding: .1rem .35rem; border-radius: .2rem; overflow-wrap: anywhere; }
+  .table-scroll { overflow-x: auto; max-width: 100%; margin-top: .75rem; }
+  .sources table { border-collapse: collapse; width: 100%; min-width: 26rem; font-size: .875rem; font-variant-numeric: tabular-nums; }
+  .sources th, .sources td { text-align: left; padding: .5rem .6rem; border-bottom: 1px solid var(--rule); }
+  .sources th { font-size: .72rem; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-soft); }
+
+  /* ---------- Footer ---------- */
+  .site-footer { background: var(--clay-deep); color: var(--paper); padding-block: clamp(3rem, 7vw, 4.5rem); padding-bottom: calc(clamp(3rem, 7vw, 4.5rem) + env(safe-area-inset-bottom, 0px)); }
+  .site-footer a { color: var(--paper); }
+  .site-footer a:hover { color: #FFFFFF; }
+  .site-footer :focus-visible { outline-color: var(--paper); box-shadow: none; }
+  .foot-grid { display: grid; gap: 2rem; }
+  @media (min-width: 880px) { .foot-grid { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 4rem; } }
+  .foot-brand { font-family: var(--font-display); font-weight: 900; font-size: clamp(1.75rem, 4vw, 2.5rem); line-height: 1.1; }
+  .foot-brand span { font-style: italic; font-weight: 700; color: #F0C8B2; }
+  .foot-copy { font-size: .875rem; line-height: 1.6; color: #F3E6DA; }
+  .academic { margin-top: 1.5rem; padding-top: 1.25rem; border-top: 1px solid rgba(250, 246, 240, .4); font-size: 1rem; line-height: 1.6; color: var(--paper); max-width: 60ch; }
+  .foot-links { display: flex; flex-wrap: wrap; gap: .25rem 1.5rem; list-style: none; margin: 1.25rem 0 0; padding: 0; font-size: .875rem; }
+  .foot-links a { display: inline-block; padding: .35rem 0; }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+  }
+</style>
+
+<div id="app" class="font-sans">
+  <a class="skip" href="#story">Skip to the story</a>
+
+  <header class="site-nav" id="top">
+    <div class="wrap nav-inner">
+      <a class="brand" href="#top" aria-label="Vanishing Fields India, back to top">Vanishing Fields <span>India</span></a>
+      <nav aria-label="Sections">
+        <ul class="nav-links">
+          <li><a href="#story">Story</a></li>
+          <li><a href="#explorer">Explorer</a></li>
+          <li><a href="#ledger">Ledger</a></li>
+          <li><a href="#planning">Planning</a></li>
+          <li><a href="#sources">Sources</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="progress" aria-hidden="true"><span id="progress-bar"></span></div>
+  </header>
+
+  <main>
+    <!-- 1. OPENING -->
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="wrap">
+        <div class="hero-copy">
+          <p class="eyebrow">Data journalism · Cities and cropland</p>
+          <h1 id="hero-title">When a city expands, what <em>disappears</em> beneath it?</h1>
+          <p class="premise">Cities across India are growing outward over wheat, ragi and paddy, and this page follows what the evidence says about how much land goes, and what goes with it.</p>
+          <a class="cta" href="#explorer">Run the land-loss explorer <span aria-hidden="true">→</span></a>
+        </div>
+        <figure class="hero-art">
+          <svg id="hero-art" viewBox="0 0 1120 250" role="img" aria-label="Illustration of a strip of farmland on the left, with furrowed green fields, gradually replaced by clay-coloured blocks of buildings toward the right." focusable="false"></svg>
+          <figcaption class="figcap">From field to footprint, drawn schematically. The pattern is illustrative and does not show real data.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- STORY -->
+    <section id="story" class="section" aria-labelledby="story-title">
+      <div class="wrap story-grid">
+        <div class="grid gap-5 content-start">
+          <p class="eyebrow">The story</p>
+          <h2 id="story-title">The last furrow before the flyover</h2>
+          <p class="fn">The plot described here is an illustrative composite, not a reported case.</p>
+        </div>
+        <div class="prose">
+          <p>Picture three acres at the end of a city bus route. For two generations the plot has been sown twice a year: wheat after the monsoon, a short pulse in the gap. Then the road is widened. A layout is approved. A surveyor drives wooden stakes into the headland, and nobody announces anything.</p>
+          <p class="pull">Cities do not take land all at once. They take it one plot at a time.</p>
+          <p>That is what makes the loss hard to see. A satellite records a speckle of bright roofs where last year the ground had the soft texture of a crop. A census reclassifies a village as a town. A farmer sees a buyer at the gate, an offer that is hard to refuse, and a canal that no longer reaches the tail end of the village.</p>
+          <p>Soil that took centuries to form is sealed in a season. Rain that once soaked into the field now runs off to a drain. The vegetables that fed a neighbourhood begin to arrive from farther away.</p>
+          <p>This page follows that edge. It starts with what the evidence can and cannot say about the scale of the loss. It then lets you run a simplified simulation for more than a hundred study regions, and ends by asking what a city could choose to do differently.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. ORIENTATION -->
+    <section class="section" aria-labelledby="scale-title">
+      <div class="wrap">
+        <header class="section-head">
+          <p class="eyebrow">Quick orientation</p>
+          <h2 id="scale-title">How much, and how sure are we?</h2>
+          <p class="lede measure">Three figures, each with its limits. Read the notes under each one, because the scope of a number decides what it can tell you.</p>
+        </header>
+        <div class="indicators">
+          <article class="indicator">
+            <p class="big">1 in 4</p>
+            <p>Roughly one quarter of the new urban land in India's largest urban agglomerations between 1992 and 2012 was formerly cropland. Most of the rest came from woodland, shrub and grass cover.</p>
+            <p class="fn"><strong>Scope:</strong> 47 urban agglomerations with at least one million people in the 2011 census, 1992 to 2012. <strong>Measures:</strong> urban extent detected from night-time satellite light, compared with land-cover maps; the urban expansion trend was about 2.4% a year. It is not a national total. <a href="#sources">Source 1</a></p>
+          </article>
+          <article class="indicator">
+            <p class="big clay">68% → 15%</p>
+            <p>Vegetation cover in Bengaluru fell from about 68% of the study area in 1973 to under 15% in 2013, while built-up area rose from about 8% to about 74%.</p>
+            <p class="fn"><strong>Scope:</strong> one city, a study area of roughly 680 sq km (derived from the reported hectares and percentages). <strong>Measures:</strong> satellite land-cover classification, reported at 91.5% overall accuracy. Vegetation here includes trees, parks and farmland together, so it is not a cropland figure. <a href="#sources">Source 2</a></p>
+          </article>
+          <article class="indicator">
+            <p class="big">−0.5 Mha</p>
+            <p>Nationally, agricultural land slipped from 180.62 to 180.11 million hectares between 2018-19 and 2021-22, while total cropped area rose from 201.18 to 219.16 million hectares.</p>
+            <p class="fn"><strong>Scope:</strong> all of India, three years. <strong>Measures:</strong> official land-use statistics. Cropped area counts a plot each time it is sown, so multiple cropping lifts it. The totals hide local losses at city edges and cannot show where land was lost. <a href="#sources">Sources 3 and 4</a></p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. EXPLORER -->
+    <section id="explorer" class="section" aria-labelledby="explorer-title">
+      <div class="wrap">
+        <header class="section-head">
+          <p class="eyebrow">Interactive explorer</p>
+          <h2 id="explorer-title">Run the edge</h2>
+          <p class="lede measure">Choose a state or union territory, a study region and a span of years. The model estimates how far a built-up footprint could spread into the surrounding land. It is a teaching tool, not a survey.</p>
+        </header>
+
+        <div class="widget" role="region" aria-labelledby="widget-title">
+          <div class="widget-bar">
+            <h3 class="badge" id="widget-title" style="color:inherit;font-family:var(--font-body);font-size:.75rem">Simplified Educational Simulation Map</h3>
+            <span class="widget-note">Schematic shapes · modelled estimates · not survey boundaries</span>
+          </div>
+
+          <div class="widget-grid">
+            <form id="explorer-form" class="controls" novalidate>
+              <div class="field">
+                <label for="state-input" id="state-label">State or Union Territory</label>
+                <div class="combo" id="state-combo">
+                  <input id="state-input" type="text" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="state-list" aria-describedby="state-hint" autocomplete="off" spellcheck="false" placeholder="Type to search, e.g. Maharashtra">
+                  <button type="button" class="combo-toggle" tabindex="-1" aria-label="Show all states and union territories"><svg width="12" height="8" viewBox="0 0 12 8" aria-hidden="true"><path d="M1 1.5l5 5 5-5" fill="none" stroke="#2D2D2D" stroke-width="1.8"/></svg></button>
+                  <ul id="state-list" class="combo-list" role="listbox" aria-labelledby="state-label" hidden></ul>
+                </div>
+                <p class="hint" id="state-hint">36 options: 28 states and 8 union territories. Use the arrow keys and Enter.</p>
+              </div>
+
+              <div class="field">
+                <label for="district-input" id="district-label">Study region</label>
+                <div class="combo" id="district-combo">
+                  <input id="district-input" type="text" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="district-list" aria-describedby="district-hint" autocomplete="off" spellcheck="false" placeholder="Choose a state first" disabled>
+                  <button type="button" class="combo-toggle" tabindex="-1" aria-label="Show all study regions" disabled><svg width="12" height="8" viewBox="0 0 12 8" aria-hidden="true"><path d="M1 1.5l5 5 5-5" fill="none" stroke="#2D2D2D" stroke-width="1.8"/></svg></button>
+                  <ul id="district-list" class="combo-list" role="listbox" aria-labelledby="district-label" hidden></ul>
+                </div>
+                <p class="hint" id="district-hint">Unlocks once a state is chosen. Regions are city-edge study windows, not whole districts.</p>
+              </div>
+
+              <div class="years">
+                <div class="field">
+                  <label for="start-year">Start year</label>
+                  <select id="start-year" class="select"></select>
+                </div>
+                <div class="field">
+                  <label for="end-year">End year</label>
+                  <select id="end-year" class="select"></select>
+                </div>
+              </div>
+
+              <button type="submit" class="btn" id="generate">Generate Spatial Analysis</button>
+              <p class="status" id="form-status" role="status" aria-live="polite"></p>
+
+              <details class="method">
+                <summary>How the model works</summary>
+                <p>Each study region has a growth class that sets its starting built-up share and a yearly growth rate. The model grows the built-up share from the start year to the end year, then draws the extra footprint over the green land. Full details are in <a href="#sources">Sources &amp; methodology</a>.</p>
+              </details>
+            </form>
+
+            <div class="output">
+              <div class="result-head">
+                <h3 id="result-title" aria-live="polite">Pune Fringe, Maharashtra</h3>
+                <p class="example-tag" id="example-tag">Example shown. Change the controls and press Generate Spatial Analysis to run your own.</p>
+              </div>
+
+              <div class="maps">
+                <figure class="map-card">
+                  <figcaption class="map-title"><strong>Initial Year Baseline</strong><span id="base-year">2000</span></figcaption>
+                  <div class="map-box" id="map-base"></div>
+                  <p class="map-meta" id="base-meta"></p>
+                </figure>
+                <figure class="map-card">
+                  <figcaption class="map-title"><strong>Urbanization Impact Map</strong><span id="impact-year">2026</span></figcaption>
+                  <div class="map-box" id="map-impact"></div>
+                  <p class="map-meta" id="impact-meta"></p>
+                </figure>
+              </div>
+
+              <ul class="legend" aria-label="Map legend">
+                <li><span class="sw sw-green" aria-hidden="true"></span>Cultivated land (modelled)</li>
+                <li><span class="sw sw-gray" aria-hidden="true"></span>Built-up footprint at baseline</li>
+                <li><span class="sw sw-red" aria-hidden="true"></span>Land converted to urban use in the period</li>
+              </ul>
+
+              <div class="telemetry" aria-label="Estimated results">
+                <div class="tile"><span class="k">Converted area</span><span class="v"><span id="t-area" data-value="0">0</span> ha</span><span class="u" id="t-area-sub">hectares, estimated</span></div>
+                <div class="tile"><span class="k">Share of mapped land lost</span><span class="v"><span id="t-share" data-value="0">0.0</span>%</span><span class="u" id="t-share-sub">of the study window</span></div>
+                <div class="tile"><span class="k">Built-up share</span><span class="v" id="t-built">0% → 0%</span><span class="u">start year to end year</span></div>
+                <div class="tile"><span class="k">Average pace</span><span class="v"><span id="t-pace" data-value="0">0</span> ha</span><span class="u">converted per year</span></div>
+              </div>
+
+              <p class="summary" id="summary" aria-live="polite"></p>
+              <p class="map-note">Shapes are generated schematics seeded from the region name; they do not follow administrative or survey boundaries. All land that is not built over is drawn green for clarity, although real study windows also contain forest, scrub, water and wasteland. Numbers are modelled estimates, not measurements.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. LEDGER -->
+    <section id="ledger" class="section" aria-labelledby="ledger-title">
+      <div class="wrap">
+        <header class="section-head">
+          <p class="eyebrow">The regional ledger</p>
+          <h2 id="ledger-title">What grows where the city is heading</h2>
+          <p class="lede measure">Six landscapes, each defined by a crop and by the pressure it faces. The pressures come from planning and academic literature and are described in general terms. The simulation above does not model them individually.</p>
+        </header>
+        <div class="ledger">
+          <article class="entry">
+            <div class="entry-top"><span class="where">Punjab</span><span class="chip">Wheat and paddy</span></div>
+            <h3>The wheat belt</h3>
+            <dl>
+              <div><dt>What grows</dt><dd>Wheat in winter and paddy in summer across the central plains, among the most intensively cropped land in the country.</dd></div>
+              <div><dt>Pressure on the land</dt><dd>Housing and industrial estates spreading from Mohali, Ludhiana and Jalandhar, on top of groundwater levels that have been falling across large parts of the state. That raises the cost of farming the land that remains. <span class="fn">See the Central Ground Water Board assessments. <a href="#sources">Source 5</a></span></dd></div>
+            </dl>
+          </article>
+          <article class="entry">
+            <div class="entry-top"><span class="where">Karnataka</span><span class="chip">Ragi</span></div>
+            <h3>The ragi zones</h3>
+            <dl>
+              <div><dt>What grows</dt><dd>Rain-fed finger millet across the southern plateau, grown with pulses and oilseeds on small dryland holdings.</dd></div>
+              <div><dt>Pressure on the land</dt><dd>Layouts and logistics parks reaching out from Bengaluru toward Tumakuru, Kolar and Ramanagara. Near the city, a dryland plot can be worth far more as a site than it earns as a farm.</dd></div>
+            </dl>
+          </article>
+          <article class="entry">
+            <div class="entry-top"><span class="where">Tamil Nadu</span><span class="chip">Paddy</span></div>
+            <h3>The delta paddies</h3>
+            <dl>
+              <div><dt>What grows</dt><dd>Kuruvai, samba and thaladi paddy seasons across the Cauvery delta around Thanjavur, Tiruvarur and Nagapattinam.</dd></div>
+              <div><dt>Pressure on the land</dt><dd>Irrigation that depends on river releases that vary from year to year makes farming risky, while highway corridors and town edges attract plotting.</dd></div>
+            </dl>
+          </article>
+          <article class="entry">
+            <div class="entry-top"><span class="where">Kerala</span><span class="chip">Wetland paddy</span></div>
+            <h3>Kuttanad below the sea</h3>
+            <dl>
+              <div><dt>What grows</dt><dd>Paddy farmed in low-lying fields and canals around Alappuzha, in a short season set by the water.</dd></div>
+              <div><dt>Pressure on the land</dt><dd>Pressure to fill land for buildings and roads. The Kerala Conservation of Paddy Land and Wetland Act, 2008 restricts conversion, though applications and enforcement remain contested.</dd></div>
+            </dl>
+          </article>
+          <article class="entry">
+            <div class="entry-top"><span class="where">Maharashtra</span><span class="chip">Grapes and onions</span></div>
+            <h3>The Nashik corridor</h3>
+            <dl>
+              <div><dt>What grows</dt><dd>Vineyards and onion fields around Nashik, in the same band of country as the Mumbai-Pune-Nashik growth corridor.</dd></div>
+              <div><dt>Pressure on the land</dt><dd>Industrial estates, highway widening and housing along the corridor, with fringe farms facing steady offers from developers.</dd></div>
+            </dl>
+          </article>
+          <article class="entry">
+            <div class="entry-top"><span class="where">West Bengal</span><span class="chip">Rice and potato</span></div>
+            <h3>The Hooghly belt</h3>
+            <dl>
+              <div><dt>What grows</dt><dd>Aman rice and potatoes on the fertile alluvial plains west of Kolkata.</dd></div>
+              <div><dt>Pressure on the land</dt><dd>Kolkata's outward growth through new townships and road links. The flat alluvial soils that make the belt productive are also easy to build on.</dd></div>
+            </dl>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. IMPACTS -->
+    <section class="section impact-band" aria-labelledby="impact-title">
+      <div class="wrap">
+        <header class="section-head">
+          <p class="eyebrow">Human and food-system impacts</p>
+          <h2 id="impact-title">What the loss touches</h2>
+          <p class="lede measure">Some effects are well documented. Others are plausible but still being studied. Each topic below keeps the two apart.</p>
+        </header>
+        <div class="impact-key">
+          <span><span class="tag tag-est">Established</span> supported by direct evidence</span>
+          <span><span class="tag tag-pos">Possible</span> plausible, still being studied</span>
+        </div>
+
+        <div>
+          <article class="impact">
+            <h3>Soil health</h3>
+            <div class="col">
+              <span><span class="tag tag-est">Established</span></span>
+              <p>Sealing a field under concrete or asphalt takes its soil out of production, and in practice the change is very hard to reverse. Topsoil is also stripped for bricks and fill around growing cities.</p>
+            </div>
+            <div class="col">
+              <span><span class="tag tag-pos">Possible</span></span>
+              <p>Farms at city edges may be tended less carefully while owners wait to sell, and fertility could decline. Research on this "waiting land" effect in India is limited.</p>
+            </div>
+          </article>
+          <article class="impact">
+            <h3>Water tables</h3>
+            <div class="col">
+              <span><span class="tag tag-est">Established</span></span>
+              <p>Paved surfaces let less rain soak in, so less water recharges groundwater beneath built-up land. In much of India, though, the larger driver of falling water tables is pumping for irrigation, not cities.</p>
+            </div>
+            <div class="col">
+              <span><span class="tag tag-pos">Possible</span></span>
+              <p>Building over recharge zones and village tanks could worsen local water scarcity and flooding together. How large the effect is depends heavily on where building happens.</p>
+            </div>
+          </article>
+          <article class="impact">
+            <h3>Local food production</h3>
+            <div class="col">
+              <span><span class="tag tag-est">Established</span></span>
+              <p>India's national cropped area has risen even as city edges have grown, helped by irrigation and multiple cropping. The losses are real but local.</p>
+            </div>
+            <div class="col">
+              <span><span class="tag tag-pos">Possible</span></span>
+              <p>Where conversion falls on the most productive land near cities, the vegetables, dairy and fruit that supply those cities may shift to farms farther away.</p>
+            </div>
+          </article>
+          <article class="impact" style="border-bottom:1px solid var(--ink)">
+            <h3>Longer supply chains</h3>
+            <div class="col">
+              <span><span class="tag tag-est">Established</span></span>
+              <p>Food that travels farther needs more transport and often more cold storage, and both use fuel and electricity.</p>
+            </div>
+            <div class="col">
+              <span><span class="tag tag-pos">Possible</span></span>
+              <p>The net change in emissions depends on vehicle type, load and spoilage rates. Transport is only one part of a food product's footprint, so the size of this effect for India is uncertain.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. PLANNING -->
+    <section id="planning" class="section" aria-labelledby="planning-title">
+      <div class="wrap">
+        <header class="section-head">
+          <p class="eyebrow">Sustainable planning choices</p>
+          <h2 id="planning-title">What a city can choose</h2>
+          <p class="lede measure">Three approaches that planners use to grow without consuming as much farmland. Each helps in some places and backfires in others.</p>
+        </header>
+        <div class="approaches">
+          <article class="approach">
+            <h3>Compact, vertical growth</h3>
+            <dl>
+              <div><dt>How it helps</dt><dd>Housing more people on each hectare leaves more land at the edge untouched, and shorter trips can cut travel emissions.</dd></div>
+              <div><dt class="tradeoff">The trade-off</dt><dd>Taller buildings need water, drainage, transit and open space to match, and dense neighbourhoods can trap heat without shade and green cover.</dd></div>
+            </dl>
+          </article>
+          <article class="approach">
+            <h3>Greenbelts and growth boundaries</h3>
+            <dl>
+              <div><dt>How it helps</dt><dd>A protected ring of farmland or open space around a city holds the edge in place and keeps nearby fields in production.</dd></div>
+              <div><dt class="tradeoff">The trade-off</dt><dd>If housing demand is not met inside the ring, building can leapfrog past it and lengthen commutes. Landowners inside the belt also need fair treatment.</dd></div>
+            </dl>
+          </article>
+          <article class="approach">
+            <h3>Protecting multi-crop land</h3>
+            <dl>
+              <div><dt>How it helps</dt><dd>Ranking land by irrigation and cropping intensity lets a city steer growth toward poorer land and away from fields that give several harvests a year. Kerala's paddy and wetland law is one example.</dd></div>
+              <div><dt class="tradeoff">The trade-off</dt><dd>Restrictions lower what farmers can earn from their plots unless they are paid for protecting them, and rules that are weakly enforced protect little.</dd></div>
+            </dl>
+          </article>
+        </div>
+        <div class="editorial-note">
+          <h3>A note on context</h3>
+          <p>None of these is a rule that works everywhere. A hill town, a delta city and a plains metropolis differ in terrain, water, land tenure and local politics. The right mix depends on the place, and it needs to be tested against local evidence before it is copied from somewhere else.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. SOURCES -->
+    <section id="sources" class="section sources" aria-labelledby="sources-title">
+      <div class="wrap">
+        <header class="section-head">
+          <p class="eyebrow">Sources, methodology and footnotes</p>
+          <h2 id="sources-title">How this page knows what it knows</h2>
+        </header>
+        <div class="sources-grid">
+          <div>
+            <h3>Sources</h3>
+            <ol>
+              <li><a href="https://www.sciencedirect.com/science/article/abs/pii/S0306919215001013" target="_blank" rel="noopener noreferrer">Urban land expansion in India 1992–2012</a> (journal article, ScienceDirect). Used for the share of new urban land that was cropland and the 2.4% annual trend.</li>
+              <li><a href="https://wgbis.ces.iisc.ac.in/energy/water/paper/Green_Space_in_Bengaluru/results.html" target="_blank" rel="noopener noreferrer">Green spaces in Bengaluru, results</a> (Centre for Ecological Sciences, Indian Institute of Science). Used for vegetation and built-up shares in 1973 and 2013.</li>
+              <li><a href="https://www.pib.gov.in/PressReleaseIframePage.aspx?PRID=2039218" target="_blank" rel="noopener noreferrer">Press Information Bureau release on land-use statistics</a>. Used for agricultural land and total cropped area, 2018-19 to 2021-22.</li>
+              <li><a href="https://desagri.gov.in/documents-reports/land-use-statistics-at-a-glance/all-india-summary/" target="_blank" rel="noopener noreferrer">Land Use Statistics at a Glance</a> (Directorate of Economics and Statistics, Ministry of Agriculture and Farmers Welfare). Background on the official land-use classes.</li>
+              <li><a href="https://cgwb.gov.in/" target="_blank" rel="noopener noreferrer">Central Ground Water Board</a>. Groundwater assessments referred to in the Punjab entry; consult the latest state assessment for current figures.</li>
+            </ol>
+            <p class="fn" style="margin-top:1rem">Statements in the Ledger, Impacts and Planning sections are general descriptions drawn from planning and academic literature and are not tied to a single figure above.</p>
+          </div>
+
+          <div>
+            <h3>Methodology of the simulation</h3>
+            <p>Each study region is assigned a growth class. The model estimates its built-up share of the study window in a given year as:</p>
+            <p><code>built(year) = min(55%, s0 × (1 + g)^(year − 2000))</code></p>
+            <p>Here <code>s0</code> is the starting share in 2000 and <code>g</code> is the yearly growth rate, both set by the class and nudged by up to 10% using a fixed value derived from the region's name, so the same region always gives the same result. Converted land is <code>built(end) − built(start)</code>, multiplied by the window area. The share of mapped land lost is converted land divided by the window area.</p>
+            <div class="table-scroll">
+              <table>
+                <thead><tr><th scope="col">Growth class</th><th scope="col">Share in 2000</th><th scope="col">Yearly growth</th></tr></thead>
+                <tbody>
+                  <tr><td>Metro fringe</td><td>6%</td><td>6.5%</td></tr>
+                  <tr><td>Fast-growing</td><td>4%</td><td>4.5%</td></tr>
+                  <tr><td>Moderate</td><td>3%</td><td>3.0%</td></tr>
+                  <tr><td>Slow-growing</td><td>2%</td><td>1.8%</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <h3 style="margin-top:1.75rem">Simulation boundaries and limits of precision</h3>
+            <p>The growth classes, window sizes and rates are illustrative assumptions chosen for teaching. They are not measurements, and they have not been calibrated against satellite imagery for any region. The map outlines are generated shapes, not boundaries. All unbuilt land is drawn as cultivated, while the cited research shows that new urban land comes from several land covers, only about a quarter of it from cropland in the largest agglomerations.</p>
+            <p>Read the output as an order-of-magnitude illustration. A real estimate would classify satellite imagery, such as Landsat or Sentinel-2, and validate it on the ground.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- 8. FOOTER -->
+  <footer class="site-footer">
+    <div class="wrap foot-grid">
+      <div>
+        <p class="foot-brand">Vanishing Fields <span>India</span></p>
+        <ul class="foot-links">
+          <li><a href="#story">Story</a></li>
+          <li><a href="#explorer">Explorer</a></li>
+          <li><a href="#ledger">Ledger</a></li>
+          <li><a href="#planning">Planning</a></li>
+          <li><a href="#sources">Sources</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="foot-copy">© 2026 Vanishing Fields India. All rights reserved. Figures are quoted from the cited sources; simulation values are illustrative.</p>
+        <p class="academic">This website was developed as an academic project for the course CHE110, submitted to Dr. Aditi Sugha at Lovely Professional University (LPU).</p>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<noscript><p style="padding:1rem">The explorer and illustrations need JavaScript. The rest of the page can be read without it.</p></noscript>
+
+<script>
+(() => {
+  'use strict';
+
+  /* =====================================================
+     Data: 28 states and 8 union territories, each with
+     city-edge study regions as "name|growth class|window km2"
+     ===================================================== */
+  const TIERS = {
+    1: { label: 'Metro fringe', s0: 0.06, g: 0.065 },
+    2: { label: 'Fast-growing', s0: 0.04, g: 0.045 },
+    3: { label: 'Moderate',     s0: 0.03, g: 0.030 },
+    4: { label: 'Slow-growing', s0: 0.02, g: 0.018 }
+  };
+
+  const RAW = [
+    ['Andhra Pradesh', 'State', ['Amaravati-Guntur Fringe|1|1400', 'Visakhapatnam Outer|2|1100', 'Tirupati Periphery|3|800']],
+    ['Arunachal Pradesh', 'State', ['Itanagar Capital Fringe|3|300', 'Naharlagun-Papum Pare|4|350']],
+    ['Assam', 'State', ['Guwahati Fringe|1|900', 'Dibrugarh Outer|3|500', 'Silchar Periphery|4|500']],
+    ['Bihar', 'State', ['Patna Fringe|1|1000', 'Gaya-Bodh Gaya Outer|3|700', 'Muzaffarpur Periphery|3|800']],
+    ['Chhattisgarh', 'State', ['Raipur-Naya Raipur Fringe|1|1200', 'Bhilai-Durg Outer|2|900', 'Bilaspur Periphery|3|800']],
+    ['Goa', 'State', ['North Goa Coastal Belt|2|450', 'Panaji-Ponda Fringe|3|300']],
+    ['Gujarat', 'State', ['Ahmedabad-Gandhinagar Fringe|1|1500', 'Surat Outer|1|1300', 'Vadodara Periphery|2|1000', 'Rajkot Outer|3|800']],
+    ['Haryana', 'State', ['Gurugram-Manesar Fringe|1|900', 'Sonipat-Kundli Outer|2|800', 'Faridabad Periphery|2|700', 'Karnal Outer|4|900']],
+    ['Himachal Pradesh', 'State', ['Solan-Baddi Valley|2|450', 'Shimla Periphery|3|400', 'Kangra Valley Outer|4|700']],
+    ['Jharkhand', 'State', ['Ranchi Fringe|2|900', 'Jamshedpur Periphery|2|800', 'Dhanbad Outer|3|700']],
+    ['Karnataka', 'State', ['Bengaluru Urban Fringe|1|1200', 'Mysuru Outer|2|900', 'Hubballi-Dharwad Periphery|3|900', 'Mandya Ragi Belt|4|1000']],
+    ['Kerala', 'State', ['Kochi-Aluva Fringe|1|700', 'Thiruvananthapuram Outer|2|700', 'Kozhikode Periphery|2|600', 'Kuttanad Paddy Belt|4|500']],
+    ['Madhya Pradesh', 'State', ['Bhopal Fringe|1|1100', 'Indore-Pithampur Outer|1|1200', 'Jabalpur Periphery|3|900', 'Gwalior Outer|3|900']],
+    ['Maharashtra', 'State', ['Pune Fringe|1|1300', 'Thane-Kalyan|1|1000', 'Nashik Periphery|2|900', 'Nagpur Outer|2|1100']],
+    ['Manipur', 'State', ['Imphal Valley Fringe|3|450', 'Thoubal-Bishnupur Paddies|4|400']],
+    ['Meghalaya', 'State', ['Shillong Fringe|2|350', 'Ri-Bhoi Outer|3|450']],
+    ['Mizoram', 'State', ['Aizawl Periphery|3|250', 'Champhai Outer|4|300']],
+    ['Nagaland', 'State', ['Dimapur Fringe|2|350', 'Kohima Periphery|3|300']],
+    ['Odisha', 'State', ['Bhubaneswar-Khordha Fringe|1|1000', 'Cuttack Outer|2|800', 'Sambalpur Periphery|4|900']],
+    ['Punjab', 'State', ['Mohali Outer|1|600', 'Ludhiana Periphery|2|1200', 'Amritsar Outer|2|1000', 'Jalandhar Periphery|3|1000']],
+    ['Rajasthan', 'State', ['Jaipur Fringe|1|1400', 'Jodhpur Outer|2|1000', 'Kota Periphery|3|900', 'Udaipur Outer|3|800']],
+    ['Sikkim', 'State', ['Gangtok Periphery|3|200', 'Namchi Outer|4|200']],
+    ['Tamil Nadu', 'State', ['Chennai Outer (Sriperumbudur)|1|1200', 'Coimbatore Fringe|2|1000', 'Madurai Periphery|3|900', 'Thanjavur Delta Paddies|4|900']],
+    ['Telangana', 'State', ['Hyderabad Outer Ring|1|1500', 'Warangal Periphery|3|800', 'Karimnagar Outer|4|800']],
+    ['Tripura', 'State', ['Agartala Fringe|2|350', 'Gomati Outer|4|350']],
+    ['Uttar Pradesh', 'State', ['Noida-Greater Noida Fringe|1|1000', 'Ghaziabad Periphery|1|800', 'Lucknow Outer|2|1200', 'Kanpur Outer|3|1000', 'Varanasi Fringe|3|800']],
+    ['Uttarakhand', 'State', ['Dehradun Fringe|1|700', 'Haridwar-Roorkee Outer|2|800', 'Haldwani Terai Belt|3|700']],
+    ['West Bengal', 'State', ['Kolkata New Town Fringe|1|1000', 'Siliguri Periphery|2|800', 'Durgapur-Asansol Outer|3|900', 'Hooghly Rice Belt|4|900']],
+
+    ['Andaman and Nicobar Islands', 'Union Territory', ['Port Blair Periphery|3|120']],
+    ['Chandigarh', 'Union Territory', ['Chandigarh Tricity Edge|1|110']],
+    ['Dadra and Nagar Haveli and Daman and Diu', 'Union Territory', ['Silvassa Outer|2|200', 'Daman Coastal Strip|2|100']],
+    ['Delhi (NCT)', 'Union Territory', ['Narela-Bawana Outer|1|500', 'Najafgarh Southwest|1|500']],
+    ['Jammu and Kashmir', 'Union Territory', ['Jammu Periphery|2|600', 'Srinagar Valley Fringe|2|500', 'Pampore Saffron Belt|3|300']],
+    ['Ladakh', 'Union Territory', ['Leh Periphery|3|200']],
+    ['Lakshadweep', 'Union Territory', ['Kavaratti Island|3|8']],
+    ['Puducherry', 'Union Territory', ['Puducherry Outer|2|300', 'Karaikal Delta|3|200']]
+  ];
+
+  const REGIONS = RAW.map(([name, type, list]) => ({
+    name,
+    type,
+    tag: type === 'State' ? 'State' : 'UT',
+    studyRegions: list.map((s) => {
+      const [n, t, a] = s.split('|');
+      return { name: n, tier: Number(t), windowKm2: Number(a), tag: TIERS[t].label };
+    })
+  }));
+
+  /* =====================================================
+     Utilities
+     ===================================================== */
+  const $ = (sel, root = document) => root.querySelector(sel);
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const nf0 = new Intl.NumberFormat('en-IN', { maximumFractionDigits: 0 });
+  const nf1 = new Intl.NumberFormat('en-IN', { minimumFractionDigits: 1, maximumFractionDigits: 1 });
+
+  const hash = (str) => {
+    let h = 2166136261;
+    for (let i = 0; i < str.length; i++) { h ^= str.charCodeAt(i); h = Math.imul(h, 16777619); }
+    return h >>> 0;
+  };
+  const rng = (seed) => () => {
+    seed |= 0; seed = (seed + 0x6D2B79F5) | 0;
+    let t = Math.imul(seed ^ (seed >>> 15), 1 | seed);
+    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+  const fx = (n) => n.toFixed(1);
+  const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+
+  let tweenId = 0;
+  function tween(el, to, fmt, dur = 900) {
+    const id = ++tweenId;
+    el._tw = id;
+    const from = parseFloat(el.dataset.value || '0');
+    el.dataset.value = String(to);
+    if (reduceMotion.matches) { el.textContent = fmt(to); return; }
+    const t0 = performance.now();
+    const step = (now) => {
+      if (el._tw !== id) return;
+      const t = Math.min(1, (now - t0) / dur);
+      const e = 1 - Math.pow(1 - t, 3);
+      el.textContent = fmt(from + (to - from) * e);
+      if (t < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  }
+
+  /* =====================================================
+     Hero illustration: fields becoming concrete
+     ===================================================== */
+  function drawHeroArt() {
+    const svg = $('#hero-art');
+    if (!svg) return;
+    const rand = rng(20260);
+    const cols = 32, rows = 6, cs = 35, gap = 3, w = cs - gap;
+    const fields = ['#2C5A3A', '#336843', '#3A7249'];
+    const roofs = ['#B0522E', '#9A4526', '#C46A44', '#7C3620'];
+    let out = '';
+    for (let c = 0; c < cols; c++) {
+      for (let r = 0; r < rows; r++) {
+        const t = (c + rand() * 2.5) / (cols + 1.5);
+        const built = rand() < Math.pow(t, 1.6) * 1.15;
+        const x = c * cs + gap / 2, y = r * cs + gap / 2;
+        if (!built) {
+          const f = fields[Math.floor(rand() * fields.length)];
+          out += `<rect x="${x}" y="${y}" width="${w}" height="${w}" fill="${f}"/>`;
+          out += `<path d="M${x} ${y + w * 0.33}h${w}M${x} ${y + w * 0.66}h${w}" stroke="rgba(250,246,240,.24)" stroke-width="1"/>`;
+        } else {
+          const h = w * (0.55 + rand() * 0.45);
+          const inset = 3 + rand() * 4;
+          const roof = roofs[Math.floor(rand() * roofs.length)];
+          out += `<rect x="${x}" y="${y}" width="${w}" height="${w}" fill="#E7D2C0"/>`;
+          out += `<rect x="${x + inset}" y="${y + w - h}" width="${w - inset * 2}" height="${h}" fill="${roof}"/>`;
+        }
+      }
+    }
+    const baseY = rows * cs;
+    out += `<line x1="0" y1="${baseY + 16}" x2="1112" y2="${baseY + 16}" stroke="#55524C" stroke-width="1.2"/>`;
+    out += `<path d="M1104 ${baseY + 11}l8 5-8 5" fill="none" stroke="#55524C" stroke-width="1.2"/>`;
+    const label = (x, anchor, text) =>
+      `<text x="${x}" y="${baseY + 40}" text-anchor="${anchor}" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" letter-spacing="1.6" fill="#2D2D2D">${text}</text>`;
+    out += label(0, 'start', 'FIELD') + label(560, 'middle', 'FRINGE') + label(1120, 'end', 'CONCRETE');
+    svg.innerHTML = out;
+  }
+
+  /* =====================================================
+     Accessible combobox (ARIA 1.2 editable list)
+     ===================================================== */
+  class Combobox {
+    constructor(root, { onCommit }) {
+      this.root = root;
+      this.input = $('input', root);
+      this.list = $('ul', root);
+      this.toggle = $('.combo-toggle', root);
+      this.onCommit = onCommit;
+      this.options = [];
+      this.visible = [];
+      this.active = -1;
+      this.committed = null;
+      this.dirty = false;
+      this.bind();
+    }
+
+    setOptions(options) {
+      this.options = options;
+      this.clear();
+    }
+
+    clear() {
+      this.committed = null;
+      this.input.value = '';
+      this.dirty = false;
+      this.markInvalid(false);
+      this.close();
+    }
+
+    setDisabled(disabled, placeholder) {
+      this.input.disabled = disabled;
+      this.toggle.disabled = disabled;
+      if (placeholder) this.input.placeholder = placeholder;
+      if (disabled) this.close();
+    }
+
+    markInvalid(flag) {
+      if (flag) this.input.setAttribute('aria-invalid', 'true');
+      else this.input.removeAttribute('aria-invalid');
+    }
+
+    filter() {
+      const q = this.dirty ? this.input.value.trim().toLowerCase() : '';
+      if (!q) { this.visible = this.options.slice(); return; }
+      const starts = [], contains = [];
+      this.options.forEach((o) => {
+        const n = o.name.toLowerCase();
+        if (n.startsWith(q)) starts.push(o);
+        else if (n.includes(q)) contains.push(o);
+      });
+      this.visible = starts.concat(contains);
+    }
+
+    render() {
+      const listId = this.list.id;
+      if (!this.visible.length) {
+        this.list.innerHTML = '<li class="empty" role="presentation">No match. Try a different spelling.</li>';
+        return;
+      }
+      this.list.innerHTML = this.visible.map((o, i) => {
+        const cur = this.committed && this.committed.name === o.name ? ' is-current' : '';
+        return `<li id="${listId}-opt-${i}" role="option" class="${cur.trim()}" data-index="${i}" aria-selected="false"><span class="opt-name">${esc(o.name)}</span><span class="opt-tag">${esc(o.tag || '')}</span></li>`;
+      }).join('');
+    }
+
+    open() {
+      if (this.input.disabled) return;
+      this.filter();
+      this.render();
+      this.list.hidden = false;
+      this.input.setAttribute('aria-expanded', 'true');
+      this.active = -1;
+    }
+
+    close() {
+      this.list.hidden = true;
+      this.input.setAttribute('aria-expanded', 'false');
+      this.input.removeAttribute('aria-activedescendant');
+      this.active = -1;
+    }
+
+    isOpen() { return !this.list.hidden; }
+
+    setActive(i) {
+      const items = this.list.querySelectorAll('li[role="option"]');
+      if (!items.length) return;
+      items.forEach((el) => el.setAttribute('aria-selected', 'false'));
+      this.active = (i + items.length) % items.length;
+      const el = items[this.active];
+      el.setAttribute('aria-selected', 'true');
+      this.input.setAttribute('aria-activedescendant', el.id);
+      el.scrollIntoView({ block: 'nearest' });
+    }
+
+    select(opt) {
+      this.committed = opt;
+      this.input.value = opt.name;
+      this.dirty = false;
+      this.markInvalid(false);
+      this.close();
+      this.onCommit(opt);
+    }
+
+    exactMatch(value) {
+      const v = value.trim().toLowerCase();
+      return v ? this.options.find((o) => o.name.toLowerCase() === v) : null;
+    }
+
+    bind() {
+      this.input.addEventListener('input', () => {
+        this.dirty = true;
+        const v = this.input.value;
+        if (this.committed && v !== this.committed.name) {
+          this.committed = null;
+          this.onCommit(null);
+        }
+        this.markInvalid(false);
+        const exact = this.exactMatch(v);
+        if (exact && !this.committed) { this.select(exact); return; }
+        this.open();
+      });
+
+      this.input.addEventListener('click', () => { if (!this.isOpen()) this.open(); });
+
+      this.input.addEventListener('keydown', (e) => {
+        const key = e.key;
+        if (key === 'ArrowDown') {
+          e.preventDefault();
+          if (!this.isOpen()) this.open();
+          this.setActive(this.active + 1);
+        } else if (key === 'ArrowUp') {
+          e.preventDefault();
+          if (!this.isOpen()) this.open();
+          this.setActive(this.active < 0 ? -1 : this.active - 1);
+        } else if (key === 'Home' && this.isOpen() && e.ctrlKey) {
+          e.preventDefault(); this.setActive(0);
+        } else if (key === 'End' && this.isOpen() && e.ctrlKey) {
+          e.preventDefault(); this.setActive(this.visible.length - 1);
+        } else if (key === 'Enter') {
+          if (this.isOpen()) {
+            e.preventDefault();
+            if (this.active >= 0) this.select(this.visible[this.active]);
+            else if (this.visible.length === 1) this.select(this.visible[0]);
+          }
+        } else if (key === 'Escape') {
+          if (this.isOpen()) { e.preventDefault(); this.close(); }
+        } else if (key === 'Tab') {
+          this.close();
+        }
+      });
+
+      this.input.addEventListener('blur', () => {
+        this.close();
+        const v = this.input.value;
+        if (this.committed) { this.input.value = this.committed.name; return; }
+        const exact = this.exactMatch(v);
+        if (exact) { this.select(exact); return; }
+        if (v.trim()) this.markInvalid(true);
+      });
+
+      this.list.addEventListener('mousedown', (e) => {
+        e.preventDefault();
+        const li = e.target.closest('li[data-index]');
+        if (li) this.select(this.visible[Number(li.dataset.index)]);
+      });
+
+      this.toggle.addEventListener('mousedown', (e) => {
+        e.preventDefault();
+        if (this.input.disabled) return;
+        if (this.isOpen()) this.close();
+        else { this.dirty = false; this.input.focus(); this.open(); }
+      });
+    }
+  }
+
+  /* =====================================================
+     Simulation model
+     ===================================================== */
+  function simulate(region, startYear, endYear) {
+    const tier = TIERS[region.tier];
+    const r = rng(hash(region.name + '|sim'));
+    const s0 = tier.s0 * (0.9 + 0.2 * r());
+    const g = tier.g * (0.9 + 0.2 * r());
+    const built = (y) => Math.min(0.55, s0 * Math.pow(1 + g, y - 2000));
+    const b0 = built(startYear);
+    const b1 = built(endYear);
+    const converted = b1 - b0;
+    const windowHa = region.windowKm2 * 100;
+    return {
+      b0, b1, converted,
+      windowKm2: region.windowKm2,
+      convertedHa: converted * windowHa,
+      sharePct: converted * 100,
+      years: endYear - startYear
+    };
+  }
+
+  /* =====================================================
+     Geometry: organic region shapes and urban footprints
+     ===================================================== */
+  function unitBlob(rand, n, amps) {
+    const phases = amps.map(() => rand() * Math.PI * 2);
+    const pts = [];
+    for (let i = 0; i < n; i++) {
+      const th = (i / n) * Math.PI * 2;
+      let r = 1;
+      amps.forEach((a, k) => { r += a * Math.cos((k + 2) * th + phases[k]); });
+      r = Math.max(0.55, Math.min(1.3, r));
+      pts.push([Math.cos(th) * r, Math.sin(th) * r]);
+    }
+    return pts;
+  }
+
+  function polyArea(pts) {
+    let a = 0;
+    for (let i = 0; i < pts.length; i++) {
+      const [x1, y1] = pts[i], [x2, y2] = pts[(i + 1) % pts.length];
+      a += x1 * y2 - x2 * y1;
+    }
+    return Math.abs(a) / 2;
+  }
+
+  function centroid(pts) {
+    let cx = 0, cy = 0;
+    pts.forEach(([x, y]) => { cx += x; cy += y; });
+    return [cx / pts.length, cy / pts.length];
+  }
+
+  function insidePoly(pt, poly) {
+    let inside = false;
+    for (let i = 0, j = poly.length - 1; i < poly.length; j = i++) {
+      const [xi, yi] = poly[i], [xj, yj] = poly[j];
+      if ((yi > pt[1]) !== (yj > pt[1]) && pt[0] < ((xj - xi) * (pt[1] - yi)) / (yj - yi) + xi) inside = !inside;
+    }
+    return inside;
+  }
+
+  function closedPath(p) {
+    const n = p.length;
+    let d = `M${fx(p[0][0])} ${fx(p[0][1])}`;
+    for (let i = 0; i < n; i++) {
+      const p0 = p[(i - 1 + n) % n], p1 = p[i], p2 = p[(i + 1) % n], p3 = p[(i + 2) % n];
+      const c1 = [p1[0] + (p2[0] - p0[0]) / 6, p1[1] + (p2[1] - p0[1]) / 6];
+      const c2 = [p2[0] - (p3[0] - p1[0]) / 6, p2[1] - (p3[1] - p1[1]) / 6];
+      d += `C${fx(c1[0])} ${fx(c1[1])} ${fx(c2[0])} ${fx(c2[1])} ${fx(p2[0])} ${fx(p2[1])}`;
+    }
+    return d + 'Z';
+  }
+
+  function buildRegionShape(name) {
+    const r = rng(hash(name + '|shape'));
+    const amps = [0.04 + 0.14 * r(), 0.03 + 0.11 * r(), 0.02 + 0.08 * r(), 0.02 + 0.06 * r()];
+    const unit = unitBlob(r, 72, amps);
+    const sx = 0.85 + 0.25 * r(), sy = 0.85 + 0.25 * r();
+    const pts = unit.map(([x, y]) => [200 + x * 125 * sx, 200 + y * 125 * sy]);
+    return { pts, d: closedPath(pts), area: polyArea(pts), center: centroid(pts), angle: Math.round(r() * 60 - 30) };
+  }
+
+  function footprint(unit, area, center) {
+    const k = Math.sqrt(area / polyArea(unit));
+    const pts = unit.map(([x, y]) => [center[0] + x * k, center[1] + y * k]);
+    return { pts, d: closedPath(pts), radius: Math.sqrt(area / Math.PI) };
+  }
+
+  function buildScene(region, shape, sim) {
+    const rand = rng(hash(region.name + '|urban'));
+    const unit = unitBlob(rand, 40, [0.05 + 0.07 * rand(), 0.04 + 0.06 * rand(), 0.02 + 0.04 * rand()]);
+    const center = [shape.center[0] + (rand() - 0.5) * 26, shape.center[1] + (rand() - 0.5) * 26];
+
+    const baseArea = sim.b0 * shape.area;
+    const convArea = sim.converted * shape.area;
+    const patchTotal = convArea * 0.15;
+    let mainExtra = convArea * 0.85;
+
+    const baseline = footprint(unit, Math.max(baseArea, 6), center);
+    const mainArea = baseArea + mainExtra;
+    const main = footprint(unit, Math.max(mainArea, 6), center);
+
+    const patches = [];
+    for (let p = 0; p < 3 && patchTotal > 1; p++) {
+      const area = patchTotal / 3;
+      const pr = Math.sqrt(area / Math.PI);
+      const pUnit = unitBlob(rand, 24, [0.12, 0.08]);
+      let placed = false;
+      for (let attempt = 0; attempt < 40 && !placed; attempt++) {
+        const ang = rand() * Math.PI * 2;
+        const dist = main.radius + pr * 1.6 + 8 + rand() * 45;
+        const c = [center[0] + Math.cos(ang) * dist, center[1] + Math.sin(ang) * dist];
+        const probes = [[pr, 0], [-pr, 0], [0, pr], [0, -pr]].map(([dx, dy]) => [c[0] + dx, c[1] + dy]);
+        if (insidePoly(c, shape.pts) && probes.every((q) => insidePoly(q, shape.pts))) {
+          patches.push(footprint(pUnit, area, c));
+          placed = true;
+        }
+      }
+      if (!placed) mainExtra += area;
+    }
+    const mainFinal = mainExtra > convArea * 0.85 + 0.5
+      ? footprint(unit, baseArea + mainExtra, center)
+      : main;
+    return { baseline, main: mainFinal, patches };
+  }
+
+  function mapSVG(prefix, shape, inner, label) {
+    return `<svg viewBox="0 0 400 400" role="img" aria-label="${esc(label)}" focusable="false">
+      <defs>
+        <clipPath id="${prefix}-clip"><path d="${shape.d}"/></clipPath>
+        <pattern id="${prefix}-rows" width="9" height="9" patternUnits="userSpaceOnUse" patternTransform="rotate(${shape.angle})">
+          <rect width="9" height="9" fill="#2C5A3A"/>
+          <path d="M0 4.5H9" stroke="#356B45" stroke-width="1.3"/>
+        </pattern>
+      </defs>
+      <path d="${shape.d}" fill="url(#${prefix}-rows)"/>
+      <g clip-path="url(#${prefix}-clip)">${inner}</g>
+      <path d="${shape.d}" fill="none" stroke="#1F4029" stroke-width="2.5" stroke-linejoin="round"/>
+    </svg>`;
+  }
+
+  /* =====================================================
+     Explorer controller
+     ===================================================== */
+  const stateInput = $('#state-input');
+  const districtInput = $('#district-input');
+  const startSel = $('#start-year');
+  const endSel = $('#end-year');
+  const statusEl = $('#form-status');
+
+  const districtCombo = new Combobox($('#district-combo'), { onCommit: () => {} });
+  const stateCombo = new Combobox($('#state-combo'), {
+    onCommit: (state) => {
+      if (state) {
+        districtCombo.setOptions(state.studyRegions);
+        districtCombo.setDisabled(false, `Search ${state.name} study regions`);
+      } else {
+        districtCombo.setOptions([]);
+        districtCombo.setDisabled(true, 'Choose a state first');
+      }
+      setStatus('');
+    }
+  });
+  stateCombo.setOptions(REGIONS);
+
+  function fillYears() {
+    const opt = (y, sel) => `<option value="${y}"${y === sel ? ' selected' : ''}>${y}</option>`;
+    let s = '', e = '';
+    for (let y = 2000; y <= 2012; y++) s += opt(y, 2000);
+    for (let y = 2013; y <= 2026; y++) e += opt(y, 2026);
+    startSel.innerHTML = s;
+    endSel.innerHTML = e;
+  }
+
+  function setStatus(msg) { statusEl.textContent = msg; }
+
+  function run(isExample) {
+    const state = stateCombo.committed;
+    const region = districtCombo.committed;
+    if (!state) {
+      setStatus('Choose a state or union territory from the list first.');
+      stateInput.focus();
+      return;
+    }
+    if (!region) {
+      setStatus('Choose a study region from the list, or type part of its name.');
+      districtInput.focus();
+      return;
+    }
+    setStatus('');
+    const y0 = Number(startSel.value), y1 = Number(endSel.value);
+    const sim = simulate(region, y0, y1);
+    const shape = buildRegionShape(region.name);
+    const scene = buildScene(region, shape, sim);
+
+    const gray = (fp) => `<path d="${fp.d}" fill="#8E8B86" stroke="#6B6863" stroke-width="1"/>`;
+    const red = (fp) => `<path d="${fp.d}" fill="#E0201B"/>`;
+
+    const baseLabel = `Baseline map of ${region.name} in ${y0}: mostly cultivated land with a small gray built-up footprint covering ${nf1.format(sim.b0 * 100)} percent.`;
+    const impactLabel = `Impact map of ${region.name} for ${y0} to ${y1}: converted land shown in red covers ${nf1.format(sim.sharePct)} percent of the mapped area.`;
+
+    $('#map-base').innerHTML = mapSVG('mb', shape, gray(scene.baseline), baseLabel);
+    $('#map-impact').innerHTML = mapSVG(
+      'mi', shape,
+      `<g class="reveal" id="red-layer">${red(scene.main)}${scene.patches.map(red).join('')}</g>${gray(scene.baseline)}`,
+      impactLabel
+    );
+
+    const layer = $('#red-layer');
+    if (layer && !reduceMotion.matches) {
+      layer.style.opacity = '0';
+      requestAnimationFrame(() => requestAnimationFrame(() => { layer.style.opacity = '1'; }));
+    }
+
+    $('#result-title').textContent = `${region.name}, ${state.name}`;
+    $('#base-year').textContent = String(y0);
+    $('#impact-year').textContent = `${y0} to ${y1}`;
+    $('#base-meta').textContent = `Built-up footprint: ${nf1.format(sim.b0 * 100)}% of the study window.`;
+    $('#impact-meta').textContent = `Built-up footprint: ${nf1.format(sim.b1 * 100)}% of the study window by ${y1}.`;
+
+    tween($('#t-area'), sim.convertedHa, (v) => nf0.format(v));
+    tween($('#t-share'), sim.sharePct, (v) => nf1.format(v));
+    tween($('#t-pace'), sim.convertedHa / sim.years, (v) => nf0.format(v));
+    $('#t-built').textContent = `${nf1.format(sim.b0 * 100)}% → ${nf1.format(sim.b1 * 100)}%`;
+    $('#t-area-sub').textContent = 'hectares, estimated';
+    $('#t-share-sub').textContent = `of a ${nf0.format(sim.windowKm2)} sq km study window`;
+
+    $('#summary').textContent =
+      `${region.name} is a ${TIERS[region.tier].label.toLowerCase()} study region. Between ${y0} and ${y1} the model grows its built-up footprint from ${nf1.format(sim.b0 * 100)}% to ${nf1.format(sim.b1 * 100)}% of the window, converting about ${nf0.format(sim.convertedHa)} hectares, or ${nf1.format(sim.sharePct)}% of the mapped land.`;
+
+    $('#example-tag').hidden = !isExample;
+  }
+
+  $('#explorer-form').addEventListener('submit', (e) => {
+    e.preventDefault();
+    run(false);
+  });
+
+  function bootExplorer() {
+    fillYears();
+    const maha = REGIONS.find((r) => r.name === 'Maharashtra');
+    stateCombo.select(maha);
+    districtCombo.select(maha.studyRegions.find((r) => r.name === 'Pune Fringe'));
+    run(true);
+  }
+
+  /* =====================================================
+     Navigation: active section and reading progress
+     ===================================================== */
+  function initNav() {
+    const links = Array.from(document.querySelectorAll('.nav-links a'));
+    const targets = links.map((a) => document.querySelector(a.getAttribute('href'))).filter(Boolean);
+    if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((en) => {
+          if (!en.isIntersecting) return;
+          links.forEach((a) => {
+            if (a.getAttribute('href') === `#${en.target.id}`) a.setAttribute('aria-current', 'location');
+            else a.removeAttribute('aria-current');
+          });
+        });
+      }, { rootMargin: '-35% 0px -55% 0px' });
+      targets.forEach((t) => io.observe(t));
+    }
+
+    const bar = $('#progress-bar');
+    let ticking = false;
+    const update = () => {
+      const h = document.documentElement.scrollHeight - window.innerHeight;
+      const p = h > 0 ? Math.min(1, Math.max(0, window.scrollY / h)) : 0;
+      bar.style.transform = `scaleX(${p})`;
+      ticking = false;
+    };
+    window.addEventListener('scroll', () => {
+      if (reduceMotion.matches || ticking) return;
+      ticking = true;
+      requestAnimationFrame(update);
+    }, { passive: true });
+  }
+
+  /* =====================================================
+     Boot
+     ===================================================== */
+  drawHeroArt();
+  bootExplorer();
+  initNav();
+})();
+</script>
+
+</body></html>
